@@ -155,9 +155,15 @@ function initialize() {
   request.open('GET', url);
   request.responseType = 'blob';
   request.onload = function() {
-    let blob = request.response;
-    var objectURL =  URL.createObjectURL(blob);
-    showProduct(objectURL, product);
+    if (request.status === 200) {
+      let blob = request.response;
+      var objectURL =  URL.createObjectURL(blob);
+      showProduct(objectURL, product);
+    }
+    else {
+      console.log('Error while fetching blob, Status: ' + request.status + ': ' + request.statusText);
+    }
+    
   };
   request.send();
  };
