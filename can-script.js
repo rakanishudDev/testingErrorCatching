@@ -10,12 +10,17 @@ function fetchingOldStyle() {
   request.open('GET', 'products.json');
   request.responseType = 'json';
   request.onload = function() {
-    products = request.response;
-    initialize();
+    if(request.status === 200){
+      products = request.response;
+      initialize(products);
+    }
+    else {
+      console.log('Error while fetching files, Status: ' + request.status + ': ' + request.statusText)
+    }
   };
   request.send();
 }
-fetchingOldStyle();
+fetchingOldStyle(products);
 // sets up the app logic, declares required variables, contains all the other functions
 function initialize() {
   // grab the UI elements that we need to manipulate
@@ -145,14 +150,16 @@ function initialize() {
   // resulting image display URL and product object on to showProduct() to finally
   // display it
  function fetchingBlobOldStyle(product) {
-  request = new XMLHttpRequest();
   var url = 'images/' + product.image;
+  request = new XMLHttpRequest();
   request.open('GET', url);
   request.responseType = 'blob';
   request.onload = function() {
-    var objectURL =  URL.createObjectURL(request.response);
+    let blob = request.response;
+    var objectURL =  URL.createObjectURL(blob);
     showProduct(objectURL, product);
   };
+  request.send();
  };
  
   // Display a product inside the <main> element
