@@ -150,7 +150,7 @@ function initialize() {
   request.open('GET', url);
   request.responseType = 'blob';
   request.onload = function() {
-    var objectURL = request.response;
+    var objectURL =  URL.createObjectURL(request.response);
     showProduct(objectURL, product);
   };
  };
