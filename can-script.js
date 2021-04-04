@@ -136,7 +136,7 @@ function initialize() {
     // for each product we want to display, pass its product object to fetchBlob()
     } else {
       for(var i = 0; i < finalGroup.length; i++) {
-        fetchBlob(finalGroup[i]);
+        fetchingBlobOldStyle(finalGroup[i]);
       }
     }
   }
@@ -144,26 +144,17 @@ function initialize() {
   // fetchBlob uses fetch to retrieve the image for that product, and then sends the
   // resulting image display URL and product object on to showProduct() to finally
   // display it
-  function fetchBlob(product) {
-    // construct the URL path to the image file from the product.image property
-    var url = 'images/' + product.image;
-    // Use fetch to fetch the image, and convert the resulting response to a blob
-    // Again, if any errors occur we report them in the console.
-    fetch(url).then(function(response) {
-      if(response.ok) {
-        response.blob().then(function(blob) {
-          // Convert the blob to an object URL — this is basically an temporary internal URL
-          // that points to an object stored inside the browser
-          var objectURL = URL.createObjectURL(blob);
-          // invoke showProduct
-          showProduct(objectURL, product);
-        });
-      } else {
-        console.log('Network request for "' + product.name + '" image failed with response ' + response.status + ': ' + response.statusText);
-      }
-    });
-  }
-
+ function fetchingBlobOldStyle(product) {
+  request = new XMLHttpRequest();
+  url = 'images/' + product.image;
+  request.open('GET', url);
+  request.responseType = 'blob';
+  request.onload = function() {
+    var objectURL = request.response;
+    showProduct(objectURL, product);
+  };
+ };
+ 
   // Display a product inside the <main> element
   function showProduct(objectURL, product) {
     // create <section>, <h2>, <p>, and <img> elements
