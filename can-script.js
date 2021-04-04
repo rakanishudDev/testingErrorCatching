@@ -4,8 +4,14 @@ var products;
 // use fetch to retrieve it, and report any errors that occur in the fetch operation
 // once the products have been successfully loaded and formatted as a JSON object
 // using response.json(), run the initialize() function
-
-
+let request = new XMLHttpRequest();
+request.open('GET', 'products.json');
+request.responseType = 'json';
+request.onload = function() {
+  products = request.response;
+  initialize();
+};
+request.send();
 // sets up the app logic, declares required variables, contains all the other functions
 function initialize() {
   // grab the UI elements that we need to manipulate
