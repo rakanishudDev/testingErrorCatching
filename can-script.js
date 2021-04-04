@@ -7,7 +7,7 @@ var products;
 
 function fetchingOldStyle() {
   let request = new XMLHttpRequest();
-  request.open('GET', 'productds.json');
+  request.open('GET', 'products.json');
   request.responseType = 'json';
   request.onload = function() {
     products = request.response;
