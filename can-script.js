@@ -5,7 +5,7 @@ var products;
 // once the products have been successfully loaded and formatted as a JSON object
 // using response.json(), run the initialize() function
 let request = new XMLHttpRequest();
-request.open('GET', 'products.json');
+request.open('GET', 'productds.json');
 request.responseType = 'json';
 request.onload = function() {
   products = request.response;
