@@ -1,17 +1,17 @@
 // create a variable to store the products 'database' in
-var products;
+
 
 // use fetch to retrieve it, and report any errors that occur in the fetch operation
 // once the products have been successfully loaded and formatted as a JSON object
 // using response.json(), run the initialize() function
 
 function fetchingOldStyle() {
-  let request = new XMLHttpRequest();
+  const request = new XMLHttpRequest();
   request.open('GET', 'products.json');
   request.responseType = 'json';
   request.onload = function() {
     if(request.status === 200){
-      products = request.response;
+      let products = request.response;
       initialize(products);
     }
     else {
