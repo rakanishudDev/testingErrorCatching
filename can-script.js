@@ -1,5 +1,5 @@
 // create a variable to store the products 'database' in
-
+var products;
 
 // use fetch to retrieve it, and report any errors that occur in the fetch operation
 // once the products have been successfully loaded and formatted as a JSON object
@@ -11,7 +11,7 @@ function fetchingOldStyle() {
   request.responseType = 'json';
   request.onload = function() {
     if(request.status === 200){
-      let products = request.response;
+      products = request.response;
       initialize(products);
     }
     else {
