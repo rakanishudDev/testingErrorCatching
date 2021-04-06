@@ -22,7 +22,7 @@ function fetchingOldStyle() {
 }
 fetchingOldStyle(products);
 // sets up the app logic, declares required variables, contains all the other functions
-function initialize() {
+function initialize(products) {
   // grab the UI elements that we need to manipulate
   var category = document.querySelector('#category');
   var searchTerm = document.querySelector('#searchTerm');
