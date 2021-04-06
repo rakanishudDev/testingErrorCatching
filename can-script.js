@@ -20,7 +20,7 @@ function fetchingOldStyle() {
   };
   request.send();
 }
-fetchingOldStyle(products);
+fetchingOldStyle();
 // sets up the app logic, declares required variables, contains all the other functions
 function initialize(products) {
   // grab the UI elements that we need to manipulate
