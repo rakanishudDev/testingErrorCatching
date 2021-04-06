@@ -151,7 +151,7 @@ function initialize(products) {
   // display it
  function fetchingBlobOldStyle(product) {
   var url = 'images/' + product.image;
-  request = new XMLHttpRequest();
+  const request = new XMLHttpRequest();
   request.open('GET', url);
   request.responseType = 'blob';
   request.onload = function() {
